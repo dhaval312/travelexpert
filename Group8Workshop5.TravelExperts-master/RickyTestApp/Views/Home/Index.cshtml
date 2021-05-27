@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*Stephen wrote this code and styled this page*@
+
+<div class="jumbotron mt-4" style="margin-bottom:10px" >
+    <div class="text-center">
+        <br />
+        <br />
+        <br />
+        <h1 class="display-4">Welcome to Travel Experts</h1>
+        <br />
+        <h5> Quality travel packages for the discerning traveler.</h5>
+    </div>
+    @*<img id="img_logo" alt="Logo" src="@Url.Content("~/images/1105.jpg")" style="width:100%;" />*@
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="row" style="margin-bottom:-30px">
+        <div class="col-md" style="border:solid;">
+            <h2>Products and Packages</h2>
+            <p>
+                Check out the products and packages we're offering!
+            </p>
+            <p>
+                <a runat="server" href="~/PnP" style="font-weight:bold;">Go &raquo;</a>
+            </p>
+        </div>
+        &nbsp;
+        <div class="col-md" style="border:solid;">
+            <h2>My Orders</h2>
+            <p>
+                Click here to view the products and packages you've ordered.
+            </p>
+            <p>
+                <a runat="server" href="~/Purchases" style="font-weight:bold;">Go &raquo;</a>
+            </p>
+        </div>
+    </div>
+    <br />
+    <br />
+    @if (!User.Identity.IsAuthenticated)
+    {<div class="row" style="margin-bottom:-30px">
+            <div class="col-md" style="border:solid;">
+                <h2>Register</h2>
+                <p>
+                    Need a vacation? Create an account to book your dream getaway.
+                </p>
+                <p>
+                    <a runat="server" href="~/Register/RegisterDetails" style="font-weight:bold;">Go &raquo;</a>
+                </p>
+            </div>
+            &nbsp;
+            <div class="col-md" style="border:solid;">
+                <h2>Login</h2>
+                <p>
+                    Already have an account? Log in to view your packages.
+                </p>
+                <p>
+                    <a runat="server" href="~/Account/Login" style="font-weight:bold;">Go &raquo;</a>
+                </p>
+            </div>
+        </div>
+    }
+</div>

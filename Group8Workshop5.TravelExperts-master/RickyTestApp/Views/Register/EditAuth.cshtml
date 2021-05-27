@@ -1,0 +1,85 @@
+﻿@model Group8.TravelExperts.Data.Domain.CustomersAuthentication
+
+@{
+    ViewData["Title"] = "EditAuth";
+}
+
+@*Stephen styled this page*@
+@*Dhaval wrote this code*@
+
+<div class="jumbotron mt-4">
+    <div class="text-center">
+        <h4>Update Username & Password</h4>
+        <hr />
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div id="uxDisplay"></div>
+                <form asp-action="EditAuth">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+
+                        <input id="uxid" asp-for="CustomerId" class="form-control" hidden />
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Username" class="control-label">Enter New Username</label>
+                        <input id="uxuser" asp-for="Username" class="form-control" required />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label">Enter Current Password</label>
+                        <input id="uxoldpass" type="password" asp-for="Password" class="form-control" required />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter New Password</label>
+                        <input id="uxnewpass" type="password" class="form-control" required />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <input id="uxconfirmnewpass" type="password" class="form-control" required />
+
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <input type="button" id="uxreset" value="Update Username & Password" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+</div>
+@*Dhaval wrote this Script*@
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#uxreset").click(function () {
+                var Id = $("#uxid").val();
+                var user = $("#uxuser").val();
+                var oldp = $("#uxoldpass").val();
+                var newp = $("#uxnewpass").val();
+                var confnewp = $("#uxconfirmnewpass").val();
+                if (user != "" && oldp != "" && newp != "" && confnewp != "") {
+                    $.ajax({
+                        method: 'GET',
+                        url: '/Register/EditAuth1',
+                        data: { id: Id, user: user, oldp: oldp, newp: newp, confnewp: confnewp }
+
+                    }).done(function (result, statusText, xhdr) {
+                        $("#uxDisplay").html(result);
+                    });
+                }
+                else {
+                    $("#uxDisplay").html("<p style='color:red;'> Username and password fields can't be empty</p>");
+                }
+
+            });////end click
+
+        });//end doc ready
+    </script>
+}

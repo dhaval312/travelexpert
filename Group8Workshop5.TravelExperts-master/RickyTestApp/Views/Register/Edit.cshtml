@@ -1,0 +1,298 @@
+﻿@model Group8.TravelExperts.Data.Domain.Customer
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@*Stephen styled this page*@
+@*Dhaval wrote this code*@
+
+<div class="jumbotron mt-4">
+    <div class="text-left">
+        <h1 class="text-center">Update Information</h1>
+        <hr />
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form asp-action="Edit" id="regForm">
+                    <table class="table" id="regtable" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td colspan="3">
+                                <h6>Make your changes, then click the button at the bottom to save. Fields marked with a '*' are required:</h6>
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            @*<td>
+                                    <label asp-for="CustomerId" class="control-label"></label>
+                                    <input asp-for="CustomerId" class="form-control" readonly />
+                                    <span asp-validation-for="CustomerId" class="text-danger"></span>
+                                </td>*@
+                            <td>
+                                <label asp-for="CustFirstName" class="control-label">First Name*</label>
+                                <input asp-for="CustFirstName" class="form-control" />
+                                <span asp-validation-for="CustFirstName" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <label asp-for="CustLastName" class="control-label">Last Name*</label>
+                                <input asp-for="CustLastName" class="form-control" />
+                                <span asp-validation-for="CustLastName" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr><td colspan="3"><hr /></td></tr>
+                        <tr>
+                            <td colspan="3" style="padding-bottom: 20px;">
+                                <label asp-for="CustAddress" class="control-label">Street Address*</label>
+                                <input asp-for="CustAddress" class="form-control" />
+                                <span asp-validation-for="CustAddress" class="text-danger"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label asp-for="CustCity" class="control-label">City*</label>
+                                <input asp-for="CustCity" class="form-control" />
+                                <span asp-validation-for="CustCity" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <label asp-for="CustProv" class="control-label">Province*</label>
+                                <br />
+                                <select asp-for="CustProv" asp-items="ViewBag.Provinces"></select>
+                                <span asp-validation-for="CustProv" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <label asp-for="CustPostal" class="control-label">Postal Code*</label>
+                                <input asp-for="CustPostal" class="form-control" />
+                                <span asp-validation-for="CustPostal" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr><td colspan="3"><hr /></td></tr>
+                        <tr>
+                            <td style="padding-bottom: 20px;">
+                                <label asp-for="CustHomePhone" class="control-label">Home Phone*</label>
+                                <input asp-for="CustHomePhone" class="form-control" id="regCustHomePhone" />
+                                <span asp-validation-for="CustHomePhone" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <label asp-for="CustBusPhone" class="control-label">Business Phone</label>
+                                <input asp-for="CustBusPhone" class="form-control" id="regCustBusPhone" />
+                                <span asp-validation-for="CustBusPhone" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <label asp-for="CustFax" class="control-label">Fax Number</label>
+                                <input asp-for="CustFax" class="form-control" id="regCustFax" />
+                                <span asp-validation-for="CustFax" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+
+                                <label asp-for="CustEmail" class="control-label">Email</label>
+                                <input asp-for="CustEmail" class="form-control" />
+                                <span asp-validation-for="CustEmail" class="text-danger"></span>
+
+                            </td>
+                            <td>
+                                <label asp-for="AgentId" class="control-label" hidden></label>
+                                <input asp-for="AgentId" class="form-control" hidden />
+
+                            </td>
+                        </tr>
+                        <tr><td colspan="3"><hr /></td></tr>
+                        <tr>
+                            <td class="text-center" colspan="3">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </td>
+                        </tr>
+                    </table>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+</div>
+
+@*Ricky added this script*@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $('#regCustHomePhone', '#regForm')
+
+            .keydown(function (e) {
+                var key = e.which || e.charCode || e.keyCode || 0;
+                $regCustHomephone = $(this);
+
+                // Don't let them remove the starting '('
+                if ($regCustHomephone.val().length === 1 && (key === 8 || key === 46)) {
+                    $regCustHomephone.val('(');
+                    return false;
+                }
+                // Reset if they highlight and type over first char.
+                else if ($regCustHomePhone.val().charAt(0) !== '(') {
+                    $regCustHomePhone.val('(' + $regCustHomePhone.val());
+                }
+
+                // Auto-format- do not expose the mask as the user begins to type
+                if (key !== 8 && key !== 9) {
+                    if ($regCustHomePhone.val().length === 4) {
+                        $regCustHomePhone.val($regCustHomePhone.val() + ')');
+                    }
+                    if ($regCustHomePhone.val().length === 5) {
+                        $regCustHomePhone.val($regCustHomePhone.val() + '-');
+                    }
+                    if ($regCustHomePhone.val().length === 9) {
+                        $regCustHomePhone.val($regCustHomePhone.val() + '-');
+                    }
+                }
+
+                // Allow numeric (and tab, backspace, delete) keys only
+                return (key == 8 ||
+                    key == 9 ||
+                    key == 46 ||
+                    (key >= 48 && key <= 57) ||
+                    (key >= 96 && key <= 105));
+            })
+
+            .bind('focus click', function () {
+                $regCustHomePhone = $(this);
+
+                if ($regCustHomePhone.val().length === 0) {
+                    $regCustHomePhone.val('(');
+                }
+                else {
+                    var val = $regCustHomePhone.val();
+                    $regCustHomePhone.val('').val(val); // Ensure cursor remains at the end
+                }
+            })
+
+            .blur(function () {
+                $regCustHomePhone = $(this);
+
+                if ($regCustHomePhone.val() === '(') {
+                    $regCustHomePhone.val('');
+                }
+            });
+
+        $('#regCustBusPhone', '#regForm')
+
+            .keydown(function (e) {
+                var key = e.which || e.charCode || e.keyCode || 0;
+                $regCustBusPhone = $(this);
+
+                // Don't let them remove the starting '('
+                if ($regCustBusPhone.val().length === 1 && (key === 8 || key === 46)) {
+                    $regCustBusPhone.val('(');
+                    return false;
+                }
+                // Reset if they highlight and type over first char.
+                else if ($regCustBusphone.val().charAt(0) !== '(') {
+                    $regCustBusPhone.val('(' + $regCustBusPhone.val());
+                }
+
+                // Auto-format- do not expose the mask as the user begins to type
+                if (key !== 8 && key !== 9) {
+                    if ($regCustBusPhone.val().length === 4) {
+                        $regCustBusPhone.val($regCustBusPhone.val() + ')');
+                    }
+                    if ($regCustBusPhone.val().length === 5) {
+                        $regCustBusPhone.val($regCustBusPhone.val() + '-');
+                    }
+                    if ($regCustBusPhone.val().length === 9) {
+                        $regCustBusPhone.val($regCustBusPhone.val() + '-');
+                    }
+                }
+
+                // Allow numeric (and tab, backspace, delete) keys only
+                return (key == 8 ||
+                    key == 9 ||
+                    key == 46 ||
+                    (key >= 48 && key <= 57) ||
+                    (key >= 96 && key <= 105));
+            })
+
+            .bind('focus click', function () {
+                $regCustBusPhone = $(this);
+
+                if ($regCustBusPhone.val().length === 0) {
+                    $regCustBusPhone.val('(');
+                }
+                else {
+                    var val = $regCustBusPhone.val();
+                    $regCustBusPhone.val('').val(val); // Ensure cursor remains at the end
+                }
+            })
+
+            .blur(function () {
+                $regCustBusPhone = $(this);
+
+                if ($regCustBusPhone.val() === '(') {
+                    $regCustBusPhone.val('');
+                }
+            });
+
+        $('#regCustFax', '#regForm')
+
+            .keydown(function (e) {
+                var key = e.which || e.charCode || e.keyCode || 0;
+                $regCustFax = $(this);
+
+                // Don't let them remove the starting '('
+                if ($regCustFax.val().length === 1 && (key === 8 || key === 46)) {
+                    $regCustFax.val('(');
+                    return false;
+                }
+                // Reset if they highlight and type over first char.
+                else if ($regCustFax.val().charAt(0) !== '(') {
+                    $regCustFax.val('(' + $regCustFax.val());
+                }
+
+                // Auto-format- do not expose the mask as the user begins to type
+                if (key !== 8 && key !== 9) {
+                    if ($regCustFax.val().length === 4) {
+                        $regCustFax.val($regCustFax.val() + ')');
+                    }
+                    if ($regCustFax.val().length === 5) {
+                        $regCustFax.val($regCustFax.val() + '-');
+                    }
+                    if ($regCustFax.val().length === 9) {
+                        $regCustFax.val($regCustFax.val() + '-');
+                    }
+                }
+
+                // Allow numeric (and tab, backspace, delete) keys only
+                return (key == 8 ||
+                    key == 9 ||
+                    key == 46 ||
+                    (key >= 48 && key <= 57) ||
+                    (key >= 96 && key <= 105));
+            })
+
+            .bind('focus click', function () {
+                $regCustFax = $(this);
+
+                if ($regCustFax.val().length === 0) {
+                    $regCustFax.val('(');
+                }
+                else {
+                    var val = $regCustFax.val();
+                    $regCustFax.val('').val(val); // Ensure cursor remains at the end
+                }
+            })
+
+            .blur(function () {
+                $regCustFax = $(this);
+
+                if ($regCustFax.val() === '(') {
+                    $regCustFax.val('');
+                }
+            });
+    </script>
+}

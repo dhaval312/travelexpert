@@ -1,0 +1,91 @@
+﻿@{
+    IEnumerable<Group8.TravelExperts.Data.Domain.PnPViewModel> packages = ViewData["Packages To Sell"] as IEnumerable<Group8.TravelExperts.Data.Domain.PnPViewModel>;
+    IEnumerable<Group8.TravelExperts.Data.Domain.PnPViewModel> products = ViewData["Products To Sell"] as IEnumerable<Group8.TravelExperts.Data.Domain.PnPViewModel>;
+    ViewData["Title"] = "Index";
+}
+
+<h2 style="display:inline;">Packages and Products</h2>
+
+<hr />
+@*Ricky wrote this code.*@
+@*Stephen styled this page*@
+
+<h4>Packages</h4>
+
+<div class="jumbotron mt-4" style="width:105%;">
+    <table class="table">
+        <tr>
+            <th>Package Name</th>
+            <th>Trip Start Date</th>
+            <th>Trip End Date</th>
+            <th>Base Price</th>
+            <th>Fee Type</th>
+            <th>Fee Amount</th>
+            <th>Total Price</th>
+            <th></th>
+        </tr>
+        @foreach (Group8.TravelExperts.Data.Domain.PnPViewModel package in packages)
+        {
+            <tr>
+                <td>@package.PkgName</td>
+                <td>@(package.TripStart.HasValue ? package.TripStart.Value.ToString("MM/dd/yyyy") : "")</td>
+                <td>@(package.TripEnd.HasValue ? package.TripEnd.Value.ToString("MM/dd/yyyy") : "")</td>
+                <td>@string.Format("{0:C}", package.BasePrice)</td>
+                <td>@package.FeeName</td>
+                <td>@string.Format("{0:C}", package.FeeAmt)</td>
+                <td>@string.Format("{0:C}", package.TotalPrice)</td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td>@Html.ActionLink("Order now!", "OrderPackage", new { customerId = (int)TempData.Peek("CustomerId"), pkgName = package.PkgName, basePrice = package.BasePrice, tripStart = package.TripStart, tripEnd = package.TripEnd })</td>
+                }
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <td>@Html.ActionLink("Log in to order now!", "Login", "Account", new { returnUrl = "/pnp" })</td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+
+<hr />
+
+<h4>Products</h4>
+<div class="jumbotron mt-4" style="width:105%;">
+    <table class="table">
+        <tr>
+            <th>Product Type</th>
+            <th>Provided By</th>
+            <th>Destination</th>
+            <th>Trip Start Date</th>
+            <th>Trip End Date</th>
+            <th>Base Price</th>
+            <th>Fee Type</th>
+            <th>Fee Amount</th>
+            <th>Total Price</th>
+            <td></td>
+        </tr>
+        @foreach (Group8.TravelExperts.Data.Domain.PnPViewModel product in products)
+        {
+            <tr>
+                <td>@product.ProdName</td>
+                <td>@product.SupName</td>
+                <td>@product.Destination</td>
+                <td>@(product.TripStart.HasValue ? product.TripStart.Value.ToString("MM/dd/yyyy") : "")</td>
+                <td>@(product.TripEnd.HasValue ? product.TripEnd.Value.ToString("MM/dd/yyyy") : "")</td>
+                <td>@string.Format("{0:C}", product.BasePrice)</td>
+                <td>@product.FeeName</td>
+                <td>@string.Format("{0:C}", product.FeeAmt)</td>
+                <td>@string.Format("{0:C}", product.TotalPrice)</td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td>@Html.ActionLink("Order now!", "OrderProduct", new { customerId = (int)TempData.Peek("CustomerId"), prodName = product.ProdName, supName = product.SupName, destination = product.Destination, basePrice = product.BasePrice, feeName = product.FeeName, feeAmt = product.FeeAmt, tripStart = product.TripStart, tripEnd = product.TripEnd })</td>
+                }
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <td>@Html.ActionLink("Log in to order now!", "Login", "Account", new { returnUrl = "/pnp" })</td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+<br />

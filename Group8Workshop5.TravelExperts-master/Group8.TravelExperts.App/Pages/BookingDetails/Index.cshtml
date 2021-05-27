@@ -1,0 +1,126 @@
+﻿@page
+@model Group8.TravelExperts.App.Pages.BookingDetails.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].ItineraryNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].TripStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].TripEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].BasePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].AgencyCommission)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].Region)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].Class)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].FeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].FeeAmt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].ProdName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].SupName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].PkgName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].IsPaid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].Booking)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.BookingDetail) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItineraryNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TripStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TripEnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BasePrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgencyCommission)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Region)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeeAmt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PkgName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPaid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Booking.BookingId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.BookingDetailId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.BookingDetailId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.BookingDetailId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

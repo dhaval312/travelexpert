@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    IEnumerable<RickyTestApp.Models.PurchaseViewModel> packages = ViewData["Packages"] as IEnumerable<RickyTestApp.Models.PurchaseViewModel>;
+    IEnumerable<RickyTestApp.Models.PurchaseViewModel> products = ViewData["Products"] as IEnumerable<RickyTestApp.Models.PurchaseViewModel>;
+}
+
+<h2 style="display:inline;">Orders</h2>
+<div style="font-weight:bold; display:inline; float:right;"> @string.Format("{0:C}", TempData["Amount Owing"])</div>
+<div style="display:inline; float:right;">Total amount owing is: &nbsp;</div>
+
+<hr />
+
+@Html.Raw(TempData["msg"])
+
+@*Ricky wrote this code*@
+@*Stephen styled this page*@
+
+<h4>My Packages</h4>
+
+<div class="jumbotron mt-4" style="width:105%;">
+    <table class="table">
+        <tr>
+            <th>Booking Number</th>
+            <th>Package Name</th>
+            <th>Trip Start Date</th>
+            <th>Trip End Date</th>
+            <th>Total Price</th>
+            <th>Customer has Paid</th>
+        </tr>
+        @foreach (PurchaseViewModel package in packages)
+        {
+    <tr>
+        <td>@package.BookingNo</td>
+        <td>@package.PkgName</td>
+        <td>@(package.TripStart.HasValue ? package.TripStart.Value.ToString("MM/dd/yyyy") : "")</td>
+        <td>@(package.TripEnd.HasValue ? package.TripEnd.Value.ToString("MM/dd/yyyy") : "")</td>
+        <td>@string.Format("{0:C}", package.TotalPrice)</td>
+        <td>@package.IsPaid</td>
+        @if (package.IsPaid == "NO")
+        {
+            <td>@Html.ActionLink("Cancel order", "CancelPackageOrder", new { bookingDetailsId = package.BookingDetailId, pkgName = package.PkgName, tripStart = package.TripStart }, new { onclick = "return confirm('Are you sure you wish to cancel this order?');" })</td>
+        }
+        @if (package.IsPaid == "YES")
+        {
+            <td>@Html.ActionLink("Request refund", "RequestRefund", new { bookingDetailsId = package.BookingDetailId })</td>
+        }
+        @if (package.IsPaid == "REFUND REQUESTED")
+        {
+            <td>Request for a refund has been submitted.</td>
+        }
+        @if (package.Discount != 0)
+        {
+            <td>@Html.ActionLink("APPLY ONE-TIME " + package.Discount.ToString() + "% DISCOUNT", "ApplyDiscount", new { bookingDetailsId = package.BookingDetailId }, new { onclick = "return confirm('Are you sure you wish to apply this discount? Discount is non-refundable.');" })</td>
+        }
+    </tr>
+        }
+        @if (packages.Count() == 0)
+        {
+            <tr>
+                <td colspan="6">Haven't ordered any packages yet? Check out what TravelExperts has to offer by clicking <a href="/pnp"><span>here</span></a>:</td>
+                <td style="text-align:left;"></td>
+            </tr>
+        }
+    </table>
+</div>
+
+<hr />
+
+<h4>My Products</h4>
+<div class="jumbotron mt-4" style="width:105%;">
+    <table class="table">
+        <tr>
+            <th>Booking Number</th>
+            <th>Product Type</th>
+            <th>Provided By</th>
+            <th>Destination</th>
+            <th>Trip Start Date</th>
+            <th>Trip End Date</th>
+            <th>Total Price</th>
+            <th>Customer has Paid</th>
+            <th></th>
+        </tr>
+        @foreach (PurchaseViewModel product in products)
+        {
+            <tr>
+                <td>@product.BookingNo</td>
+                <td>@product.ProdName</td>
+                <td>@product.SupName</td>
+                <td>@product.Destination</td>
+                <td>@(product.TripStart.HasValue ? product.TripStart.Value.ToString("MM/dd/yyyy") : "")</td>
+                <td>@(product.TripEnd.HasValue ? product.TripEnd.Value.ToString("MM/dd/yyyy") : "")</td>
+                <td>@string.Format("{0:C}", product.TotalPrice)</td>
+                <td>@product.IsPaid</td>
+                @if (product.IsPaid == "NO")
+                {
+                    <td>@Html.ActionLink("Cancel order", "CancelProductOrder", new { bookingDetailsId = product.BookingDetailId, prodName = product.ProdName, supName = product.SupName, tripStart = product.TripStart, }, new { onclick = "return confirm('Are you sure you wish to cancel this order?');" })</td>
+                }
+                @if (product.IsPaid == "YES")
+                {
+                    <td>@Html.ActionLink("Request refund", "RequestRefund", new { bookingDetailsId = product.BookingDetailId })</td>
+                }
+                @if (product.IsPaid == "REFUND REQUESTED")
+                {
+                    <td>Request for a refund has been submitted.</td>
+                }
+            </tr>
+        }
+        @if (products.Count() == 0)
+        {
+            <tr>
+                <td colspan="7">Haven't ordered any products yet? Check out what TravelExperts has to offer by clicking <a href="/pnp"><span>here</span></a>:</td>
+            </tr>
+        }
+    </table>
+</div>
+<br />

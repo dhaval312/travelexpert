@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Group8.TravelExperts.Data", "Group8.TravelExperts.Data\Group8.TravelExperts.Data.csproj", "{943AE601-9AEE-4C2E-BE4C-422505E8C47E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RickyTestApp", "RickyTestApp\RickyTestApp.csproj", "{45CB581C-B582-4E68-B9EB-561FC908664E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{943AE601-9AEE-4C2E-BE4C-422505E8C47E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{943AE601-9AEE-4C2E-BE4C-422505E8C47E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{943AE601-9AEE-4C2E-BE4C-422505E8C47E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{943AE601-9AEE-4C2E-BE4C-422505E8C47E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45CB581C-B582-4E68-B9EB-561FC908664E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45CB581C-B582-4E68-B9EB-561FC908664E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45CB581C-B582-4E68-B9EB-561FC908664E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45CB581C-B582-4E68-B9EB-561FC908664E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F436A15B-56D0-4632-8A4D-2FE229C92452}
+	EndGlobalSection
+EndGlobal

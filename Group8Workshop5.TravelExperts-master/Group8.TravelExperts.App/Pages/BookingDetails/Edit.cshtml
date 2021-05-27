@@ -1,0 +1,110 @@
+﻿@page
+@model Group8.TravelExperts.App.Pages.BookingDetails.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>BookingDetail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BookingDetail.BookingDetailId" />
+            <div class="form-group">
+                <label asp-for="BookingDetail.ItineraryNo" class="control-label"></label>
+                <input asp-for="BookingDetail.ItineraryNo" class="form-control" />
+                <span asp-validation-for="BookingDetail.ItineraryNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.TripStart" class="control-label"></label>
+                <input asp-for="BookingDetail.TripStart" class="form-control" />
+                <span asp-validation-for="BookingDetail.TripStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.TripEnd" class="control-label"></label>
+                <input asp-for="BookingDetail.TripEnd" class="form-control" />
+                <span asp-validation-for="BookingDetail.TripEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.Description" class="control-label"></label>
+                <input asp-for="BookingDetail.Description" class="form-control" />
+                <span asp-validation-for="BookingDetail.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.Destination" class="control-label"></label>
+                <input asp-for="BookingDetail.Destination" class="form-control" />
+                <span asp-validation-for="BookingDetail.Destination" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.BasePrice" class="control-label"></label>
+                <input asp-for="BookingDetail.BasePrice" class="form-control" />
+                <span asp-validation-for="BookingDetail.BasePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.AgencyCommission" class="control-label"></label>
+                <input asp-for="BookingDetail.AgencyCommission" class="form-control" />
+                <span asp-validation-for="BookingDetail.AgencyCommission" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.BookingId" class="control-label"></label>
+                <select asp-for="BookingDetail.BookingId" class="form-control" asp-items="ViewBag.BookingId"></select>
+                <span asp-validation-for="BookingDetail.BookingId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.Region" class="control-label"></label>
+                <input asp-for="BookingDetail.Region" class="form-control" />
+                <span asp-validation-for="BookingDetail.Region" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.Class" class="control-label"></label>
+                <input asp-for="BookingDetail.Class" class="form-control" />
+                <span asp-validation-for="BookingDetail.Class" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.FeeName" class="control-label"></label>
+                <input asp-for="BookingDetail.FeeName" class="form-control" />
+                <span asp-validation-for="BookingDetail.FeeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.FeeAmt" class="control-label"></label>
+                <input asp-for="BookingDetail.FeeAmt" class="form-control" />
+                <span asp-validation-for="BookingDetail.FeeAmt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.ProdName" class="control-label"></label>
+                <input asp-for="BookingDetail.ProdName" class="form-control" />
+                <span asp-validation-for="BookingDetail.ProdName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.SupName" class="control-label"></label>
+                <input asp-for="BookingDetail.SupName" class="form-control" />
+                <span asp-validation-for="BookingDetail.SupName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.PkgName" class="control-label"></label>
+                <input asp-for="BookingDetail.PkgName" class="form-control" />
+                <span asp-validation-for="BookingDetail.PkgName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDetail.IsPaid" class="control-label"></label>
+                <input asp-for="BookingDetail.IsPaid" class="form-control" />
+                <span asp-validation-for="BookingDetail.IsPaid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

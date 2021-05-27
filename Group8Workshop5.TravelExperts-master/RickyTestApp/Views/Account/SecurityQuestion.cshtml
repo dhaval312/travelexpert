@@ -1,0 +1,31 @@
+﻿@model Group8.TravelExperts.Data.Domain.SecurityQuestionViewModel
+@{
+    ViewData["Title"] = "SecurityQuestion";
+}
+
+@*Ricky wrote this code*@
+@*Stephen styled this page*@
+
+<div class="jumbotron mt-4">
+    <div class="text-center">
+        <div class="row justify-content-center">
+            <form asp-action="GetLink">
+                <h3>Answer the security question:</h3>
+                <table class="table">
+                    <tr>
+                        <td colspan="2">@TempData.Peek("Security Question")</td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" asp-for="Attempt" /></td>
+                    </tr>
+                    @Html.Raw(TempData["AnswerResponse"])
+                    <tr>
+                        <td>
+                            <input type="submit" value="Submit" class="btn btn-primary" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
